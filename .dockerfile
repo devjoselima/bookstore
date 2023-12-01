@@ -1,16 +1,3 @@
-
-Skip to content
-All gists
-Back to GitHub
-@devjoselima
-@drsantos20
-drsantos20/Dockerfile
-Last active December 5, 2021 23:55 • Report abuse
-
-Code
-Revisions 2
-Dockerfile from bookstore
-Dockerfile
 # `python-base` sets up all our shared environment variables
 FROM python:3.8.1-slim as python-base
 
@@ -54,7 +41,6 @@ RUN apt-get update \
 # install poetry - respects $POETRY_VERSION & $POETRY_HOME
 RUN curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
 
-# install postgres dependencies inside of Docker
 RUN apt-get update \
     && apt-get -y install libpq-dev gcc \
     && pip install psycopg2
@@ -76,24 +62,3 @@ COPY . /app/
 EXPOSE 8000
 
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
-
-@devjoselima
-Comment
-
-Leave a comment
-Footer
-© 2023 GitHub, Inc.
-Footer navigation
-
-    Terms
-    Privacy
-    Security
-    Status
-    Docs
-    Contact GitHub
-    Pricing
-    API
-    Training
-    Blog
-    About
-
