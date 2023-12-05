@@ -1,5 +1,5 @@
 # `python-base` sets up all our shared environment variables
-FROM python:3.8.1-slim as python-base
+FROM python:3.10.1-slim as python-base
 
     # python
 ENV PYTHONUNBUFFERED=1 \
@@ -39,7 +39,7 @@ RUN apt-get update \
         build-essential
 
 # install poetry - respects $POETRY_VERSION & $POETRY_HOME
-RUN curl -sSL https://install.python-poetry.org | POETRY_HOME=/etc/poetry python3 -
+RUN pip install poetry
 
 RUN apt-get update \
     && apt-get -y install libpq-dev gcc \
@@ -51,7 +51,7 @@ COPY poetry.lock pyproject.toml ./
 
 # install runtime deps - uses $POETRY_VIRTUALENVS_IN_PROJECT internally
 RUN poetry install --no-dev
-
+.
 # quicker install as runtime deps are already installed
 RUN poetry install
 
